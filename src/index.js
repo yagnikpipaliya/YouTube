@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   ...DefaultRouter,
   // ...IndexRouters,
   ...SimpleRouter
-] ,{basename: process.env.PUBLIC_URL });
+] ,{basename: process.env.PUBLIC_URL || "/YouTube/" });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
