@@ -25,7 +25,7 @@ const router = createBrowserRouter([
   ...DefaultRouter,
   // ...IndexRouters,
   ...SimpleRouter
-  ] ,{basename: process.env.PUBLIC_URL || "/YouTube/" });
+  ] ,{basename: process.env.PUBLIC_URL || "/YouTube" });
 // ] ,{basename: "https://yagnikpipaliya.github.io/YouTube" || process.env.PUBLIC_URL || "/YouTube/" });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
