@@ -48,12 +48,13 @@ import VideoPage from '../views/dashboard/VideoPage';
 
 export const DefaultRouter = [
     {
-        path: '/',
+        // path: '/',
+        path: "/YouTube",
         element: <Default />,
         children: [
             {
                 // path: 'dashboard',
-                path: '/',
+                path: "/YouTube",
                 element: <Index />
             },
             {
