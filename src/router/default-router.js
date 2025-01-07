@@ -55,10 +55,11 @@ export const DefaultRouter = [
             {
                 // path: 'dashboard',
                 path: "YouTube",
+                path: "/",
                 element: <Index />
             },
             {
-                path: 'YouTube/:categoryId/:videoId',
+                path: '/:categoryId/:videoId',
                 element: <VideoPage />
             },
             {
