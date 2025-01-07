@@ -54,7 +54,7 @@ export const DefaultRouter = [
         children: [
             {
                 // path: 'dashboard',
-                path: "YouTube",
+                // path: "YouTube",
                 path: "/",
                 element: <Index />
             },

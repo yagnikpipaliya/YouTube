@@ -4,7 +4,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 //router
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 //store
 import { Provider } from "react-redux";
 //reducer
@@ -15,6 +15,7 @@ import { IndexRouters } from "./router";
 import { SimpleRouter } from "./router/simple-router";
 import { DefaultRouter } from "./router/default-router";
 import Default from "./layouts/dashboard/default";
+import VideoPage from "./views/dashboard/VideoPage";
 
 // const router = createBrowserRouter([
 const router = createBrowserRouter([
@@ -25,15 +26,23 @@ const router = createBrowserRouter([
   ...DefaultRouter,
   // ...IndexRouters,
   ...SimpleRouter
-  ] ,{basename: process.env.PUBLIC_URL || "/YouTube" });
-// ] ,{basename: "https://yagnikpipaliya.github.io/YouTube" || process.env.PUBLIC_URL || "/YouTube/" });
+] ,{basename: process.env.PUBLIC_URL || "/YouTube" });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App>
-        <RouterProvider router={router}></RouterProvider>
-      </App>
+      {/* <App> */}
+      <BrowserRouter basename={"/YouTube" || process.env.REACT_APP_PUBLIC_URL || process.env.PUBLIC_URL || "/YouTube"}>
+        <App>
+          {console.log('process.env.PUBLIC_URL', process.env.PUBLIC_URL, "|", process.env.REACT_APP_PUBLIC_URL)}
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/:categoryId/:videoId" element={<VideoPage />} />
+          </Routes>
+        </App>
+      </BrowserRouter>
+        {/* <RouterProvider router={router}></RouterProvider> */}
+      {/* </App> */}
     </Provider>
   </React.StrictMode>
 );
