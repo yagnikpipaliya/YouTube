@@ -4,7 +4,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 //router
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, createHashRouter } from "react-router-dom";
 //store
 import { Provider } from "react-redux";
 //reducer
@@ -16,6 +16,7 @@ import { SimpleRouter } from "./router/simple-router";
 import { DefaultRouter } from "./router/default-router";
 import Default from "./layouts/dashboard/default";
 
+// const router = createBrowserRouter([
 const router = createBrowserRouter([
   // {
   //   path: "/",
