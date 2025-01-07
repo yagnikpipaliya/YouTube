@@ -4,7 +4,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 //router
-import { createBrowserRouter, RouterProvider, createHashRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //store
 import { Provider } from "react-redux";
 //reducer
@@ -25,7 +25,8 @@ const router = createBrowserRouter([
   ...DefaultRouter,
   // ...IndexRouters,
   ...SimpleRouter
-] ,{basename: "https://yagnikpipaliya.github.io/YouTube" || process.env.PUBLIC_URL || "/YouTube/" });
+  ] ,{basename: process.env.PUBLIC_URL || "/YouTube/" });
+// ] ,{basename: "https://yagnikpipaliya.github.io/YouTube" || process.env.PUBLIC_URL || "/YouTube/" });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
