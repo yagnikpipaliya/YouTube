@@ -2,7 +2,7 @@
   "homepage": "https://yagnikpipaliya.github.io/YouTube",
   "name": "hope-ui-react",
   "version": "2.0.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
