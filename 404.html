@@ -7,6 +7,7 @@
     <script type="text/javascript">
       var path = window.location.pathname.replace("/YouTube/", "");
       var newUrl = "/YouTube/" + path + window.location.search + window.location.hash;
+      console.log('404.html: ', path, newUrl)
       window.location.replace(newUrl);
     </script>
     <title>Redirecting...</title>
