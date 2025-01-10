@@ -1,7 +1,7 @@
 import React, { useEffect, useState, memo, Fragment, useRef } from "react";
 import axios from "axios";
 import { Row, Col, Dropdown, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -155,6 +155,8 @@ const Index = memo((props) => {
     AOS.init({ duration: 1000 }); // Adjust the duration as needed
   }, []);
 
+  const navigate = useNavigate();
+
   const handleCardClick = (video, channelImages) => {
     video = {...video, channelImages: channelImages}
     const { id, snippet, etag, statistics } = video;
@@ -162,7 +164,8 @@ const Index = memo((props) => {
     dispatch(setSelectedVideo(video));
     sessionStorage.setItem("video", JSON.stringify(video))
 
-    window.open(`YouTube/${categoryId}/${id}`, '_blank');
+    navigate(`/YouTube/${categoryId}/${id}`);
+    // window.open(`YouTube/${categoryId}/${id}`, '_blank');
     // window.open(`${categoryId}/${id}`, '_blank');
   };
 
