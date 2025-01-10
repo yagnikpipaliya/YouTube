@@ -59,7 +59,7 @@ export const DefaultRouter = [
                 element: <Index />
             },
             {
-                path: '/:categoryId/:videoId',
+                path: 'YouTube/:categoryId/:videoId',
                 element: <VideoPage />
             },
             {

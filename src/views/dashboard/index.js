@@ -162,7 +162,8 @@ const Index = memo((props) => {
     dispatch(setSelectedVideo(video));
     sessionStorage.setItem("video", JSON.stringify(video))
 
-    window.open(`${categoryId}/${id}`, '_blank');
+    window.open(`YouTube/${categoryId}/${id}`, '_blank');
+    // window.open(`${categoryId}/${id}`, '_blank');
   };
 
   /*useSelector(SettingSelector.theme_color);
