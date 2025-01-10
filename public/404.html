@@ -14,6 +14,7 @@
       const pathname = window.location.pathname;
       const search = window.location.search;
       const hash = window.location.hash;
+      console.log("404.html: ", redirectTo + pathname + search + hash);
       window.location.href = redirectTo + pathname + search + hash;
       // window.location.href = redirectTo + "#" + pathname + search + hash;
     </script>
