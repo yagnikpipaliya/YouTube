@@ -68,7 +68,7 @@ const Sidebar = memo((props) => {
         data-sidebar="responsive"
       >
         <div className="sidebar-header d-flex align-items-center justify-content-start">
-          <Link to="/dashboard" className="navbar-brand">
+          <Link to="/YouTube" className="navbar-brand">
             {/* <Logo /> */}
             <svg
               xmlns="http://www.w3.org/2000/svg"

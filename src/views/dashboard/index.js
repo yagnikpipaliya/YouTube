@@ -385,6 +385,89 @@ const Index = memo((props) => {
   };*/
   return (
     <Fragment>
+      
+      {/* {loading && <div className="d-flex align-items-center justify-content-center">
+          <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>}
+      { videos.length === 0 && error && <p style={{ color: "red" }}>{error}</p>} */}
+
+      <InfiniteScroll
+        dataLength={videos.length} // This is the number of items loaded
+        next={() => fetchVideos(nextPageToken)} // Fetch next page
+        hasMore={!!nextPageToken} // Determines if more items should be loaded
+        loader={<div className="d-flex align-items-center justify-content-center">
+          <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>} // Loading indicator
+        endMessage={""} // Message when no more data
+        // endMessage={<p>No more videos to show.</p>} // Message when no more data
+        className="overflow-visible"
+      >
+        <Row className="mt-5">
+          {videos.map((video, i) => {
+            const { id, snippet, etag, statistics } = video;
+            const { title, description, thumbnails, publishedAt, channelTitle, categoryId, channelId  } = snippet;
+            return (
+              <Col md="6" lg="4" sm="12" key={i}>
+                {/* <Link to={`${categoryId}/${id}`} target="_parent"> */}
+                  <div className="card video-card" data-aos="fade-up" data-aos-delay="00" onClick={()=>handleCardClick(video, channelImages[channelId])} style={{ cursor: "pointer" }}>
+                    {/* credit-card-widget */}
+                    <div className="border-0 card-header bg-soft-light" style={{ height: "100%", width: "100%" }}>
+                      {/* pb-4  */}
+                      <img
+                        src={thumbnails?.maxres?.url || thumbnails?.medium?.url}
+                        // src="https://i.ytimg.com/vi/kkWgk_tZtRA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBxJSB8jAhtmi2uMzs33lKnAEsQBQ"
+                        className="w-100 rounded-3"
+                        alt="Video Thumbnail"
+                        style={{ objectFit: "cover" }}
+                        loading={videos.length < 15 ? "eager" :"lazy"}
+                      />
+                    </div>
+                    <div className="card-body bg-soft-light">
+                      <div className="mb-4">
+                        <div className="d-flex justify-content-start">
+                          {/* flex-wrap  */}
+                          <img
+                            src={
+                              channelImages[channelId] ||
+                              "https://yt3.ggpht.com/WrjDeIWr2pmRdCKFuEDfvkovr0O_o7gyfT_J_AMJjFk5KR9HGQVirOP0DeimyAoBUHRfH79X=s68-c-k-c0x00ffffff-no-rj" ||
+                              "https://via.placeholder.com/36"
+                            }
+                            className="rounded-circle me-2"
+                            alt="Logo"
+                            style={{ height: "36px", width: "36px", objectFit: "fill" }}
+                          />
+                          <div>
+                            <h6 className="mb-1 video-title">{title || "Title"}</h6>
+                            <div className="fs-14 text-muted">
+                              {channelTitle || "Channel Title"}{" "}
+                              <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" focusable="false" fill="#606060" aria-hidden="true">
+                                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zM9.8 17.3l-4.2-4.1L7 11.8l2.8 2.7L17 7.4l1.4 1.4-8.6 8.5z"></path>
+                              </svg>
+                            </div>
+                            <div className="fs-14 text-muted">
+                              <span>{viewConvertor(statistics?.viewCount)} views</span>
+                              <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-dot" viewBox="0 0 16 16">
+                                  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                                </svg>
+                              </span>
+                              <span>{TimeAgo(publishedAt)}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {/* </Link> */}
+              </Col>
+            );
+          })}
+        </Row>
+      </InfiniteScroll>
       {/* <Row>
         <Col md="12" lg="12">
           <Row className="row-cols-1">
@@ -1087,88 +1170,6 @@ const Index = memo((props) => {
           </Row>
         </Col>
       </Row> */}
-      {loading && <div className="d-flex align-items-center justify-content-center">
-          <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>}
-      { videos.length === 0 && error && <p style={{ color: "red" }}>{error}</p>}
-
-      <InfiniteScroll
-        dataLength={videos.length} // This is the number of items loaded
-        next={() => fetchVideos(nextPageToken)} // Fetch next page
-        hasMore={!!nextPageToken} // Determines if more items should be loaded
-        loader={<div className="d-flex align-items-center justify-content-center">
-          <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>} // Loading indicator
-        endMessage={""} // Message when no more data
-        // endMessage={<p>No more videos to show.</p>} // Message when no more data
-        className="overflow-visible"
-      >
-        <Row className="mt-5">
-          {videos.map((video, i) => {
-            const { id, snippet, etag, statistics } = video;
-            const { title, description, thumbnails, publishedAt, channelTitle, categoryId, channelId  } = snippet;
-            return (
-              <Col md="6" lg="4" sm="12" key={i}>
-                {/* <Link to={`${categoryId}/${id}`} target="_parent"> */}
-                  <div className="card video-card" data-aos="fade-up" data-aos-delay="00" onClick={()=>handleCardClick(video, channelImages[channelId])}>
-                    {/* credit-card-widget */}
-                    <div className="border-0 card-header">
-                      {/* pb-4  */}
-                      <img
-                        src={thumbnails?.maxres?.url || thumbnails?.medium?.url}
-                        // src="https://i.ytimg.com/vi/kkWgk_tZtRA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBxJSB8jAhtmi2uMzs33lKnAEsQBQ"
-                        className="w-100 rounded-3"
-                        alt="Video Thumbnail"
-                        style={{ objectFit: "cover" }}
-                        loading={videos.length < 15 ? "eager" :"lazy"}
-                      />
-                    </div>
-                    <div className="card-body">
-                      <div className="mb-4">
-                        <div className="d-flex justify-content-start">
-                          {/* flex-wrap  */}
-                          <img
-                            src={
-                              channelImages[channelId] ||
-                              "https://yt3.ggpht.com/WrjDeIWr2pmRdCKFuEDfvkovr0O_o7gyfT_J_AMJjFk5KR9HGQVirOP0DeimyAoBUHRfH79X=s68-c-k-c0x00ffffff-no-rj" ||
-                              "https://via.placeholder.com/36"
-                            }
-                            className="rounded-circle me-2"
-                            alt="Logo"
-                            style={{ height: "36px", width: "36px", objectFit: "fill" }}
-                          />
-                          <div>
-                            <h6 className="mb-1 video-title">{title || "Title"}</h6>
-                            <div className="fs-14 text-muted">
-                              {channelTitle || "Channel Title"}{" "}
-                              <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" focusable="false" fill="#606060" aria-hidden="true">
-                                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zM9.8 17.3l-4.2-4.1L7 11.8l2.8 2.7L17 7.4l1.4 1.4-8.6 8.5z"></path>
-                              </svg>
-                            </div>
-                            <div className="fs-14 text-muted">
-                              <span>{viewConvertor(statistics?.viewCount)} views</span>
-                              <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-dot" viewBox="0 0 16 16">
-                                  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
-                                </svg>
-                              </span>
-                              <span>{TimeAgo(publishedAt)}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                {/* </Link> */}
-              </Col>
-            );
-          })}
-        </Row>
-      </InfiniteScroll>
     </Fragment>
   );
 });
