@@ -68,7 +68,7 @@ const Default = memo((props) => {
           {/* <DefaultRouter /> */}
           <Outlet />
         </div>
-        <div className="btn-download ">
+        {/* <div className="btn-download ">
           <Button
             variant="success py-2 px-3 d-flex gap-2"
             href="https://iqonic.design/item/hope-ui-pro/item-checkout/?coupon_code=DROPBY20"
@@ -97,10 +97,10 @@ const Default = memo((props) => {
             </svg>
             Buy Now
           </Button>
-        </div>
+        </div> */}
         <Footer />
       </main>
-      <SettingOffCanvas />
+      {/* <SettingOffCanvas /> */}
     </Fragment>
   );
 });

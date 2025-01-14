@@ -80,7 +80,7 @@ const Header = memo((props) => {
               <span className="navbar-toggler-bar bar3"></span>
             </span>
           </Navbar.Toggle>
-          <Navbar.Collapse id="navbarSupportedContent">
+          {/* <Navbar.Collapse id="navbarSupportedContent">
             <Nav as="ul" className="mb-2 ms-auto navbar-list mb-lg-0 align-items-center">
               <Nav.Link className="btn btn-primary btn-sm d-flex gap-2 align-items-center me-2" href="https://hopeui.iqonic.design/pro/" target="_blank">
                 <svg className="icon-22 me-2" width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -330,7 +330,7 @@ const Header = memo((props) => {
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>
-          </Navbar.Collapse>
+          </Navbar.Collapse> */}
         </Container>
       </Navbar>
     </Fragment>
